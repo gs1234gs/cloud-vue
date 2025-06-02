@@ -95,12 +95,12 @@ mybatis:
 #  mapper-locations: SkyriseTechFronter-user/src/main/java/classpath:resources/com/tianchang/mapper/*.xml  # MyBatis 映射文件的位置，指定 XML 映射文件的路径。
 
 #aliyun-oss
-aliyun:
-  oss:
-    endpoint: https://oss-cn-beijing.aliyuncs.com
-    bucketName: web-eg-example01
-    accessKeyId: LTAI5tNC3nPEEfGJ2P56wTvG
-    accessKeySecret: 5VeOsZIVmOSGPsBVWvIcyhE4y4MUbE
+# aliyun:
+#   oss:
+#     endpoint: 
+#     bucketName: 
+#     accessKeyId: 
+#     accessKeySecret: 
 
 #事物管理配置
 #logging:

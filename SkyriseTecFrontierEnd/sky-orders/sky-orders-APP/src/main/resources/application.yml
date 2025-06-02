@@ -72,10 +72,10 @@ mybatis:
 #aliyun-oss
 #aliyun:
 #  oss:
-#    endpoint: https://oss-cn-beijing.aliyuncs.com
-#    bucketName: web-eg-example01
-#    accessKeyId: LTAI5tNC3nPEEfGJ2P56wTvG
-#    accessKeySecret: 5VeOsZIVmOSGPsBVWvIcyhE4y4MUbE
+#    endpoint: 
+#    bucketName: 
+#    accessKeyId: 
+#    accessKeySecret: 
 
 #事物管理配置
 logging:

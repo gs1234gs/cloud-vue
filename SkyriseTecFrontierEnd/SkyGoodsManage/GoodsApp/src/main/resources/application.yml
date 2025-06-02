@@ -70,15 +70,6 @@ mybatis:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 #  mapper-locations: SkyriseTechFronter-user/src/main/java/classpath:resources/com/tianchang/mapper/*.xml
 
-
-#aliyun-oss
-#aliyun:
-#  oss:
-#    endpoint: https://oss-cn-beijing.aliyuncs.com
-#    bucketName: web-eg-example01
-#    accessKeyId: LTAI5tNC3nPEEfGJ2P56wTvG
-#    accessKeySecret: 5VeOsZIVmOSGPsBVWvIcyhE4y4MUbE
-
 #事物管理配置
 logging:
   level:
