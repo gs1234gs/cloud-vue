@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="KubernetesApiProvider"><![CDATA[{}]]></component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/Skyrise-Goods/pom.xml" />
+        <option value="$PROJECT_DIR$/Skyrise-Goods/Goods-pojo/pom.xml" />
+        <option value="$PROJECT_DIR$/Skyrise-Goods/Goods-service/pom.xml" />
+        <option value="$PROJECT_DIR$/Skyrise-Goods/Goods-APP/pom.xml" />
+        <option value="$PROJECT_DIR$/Goods-commen/pom.xml" />
+        <option value="$PROJECT_DIR$/Goods-pojo/pom.xml" />
+        <option value="$PROJECT_DIR$/Goods-service/pom.xml" />
+        <option value="$PROJECT_DIR$/GoodsApp/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyGoods/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="21" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

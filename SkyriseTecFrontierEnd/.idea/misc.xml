@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/common-util/common-utils-spring-boot-starter" />
+  </component>
+  <component name="KubernetesApiProvider"><![CDATA[{}]]></component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/securitySpring/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyriseTecFrontierEnd/APP/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyriseTecFrontierEnd/SKYSecurity/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyriseTecFrontierEnd/common-module/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyriseTecFrontierEnd/SkyriseTechFrontier/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyriseTecFrontierEnd/SkyriseTechFronter-user/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyriseTecFrontierEnd/SkyriseTechFrontier-pojo/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyriseTecFrontierEnd/SkyriseTecFrontier-Security/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyriseTecFrontierEnd/aliyun-oss-spring-boot-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyriseTecFrontierEnd/aliyun-oss-spring-boot-autoconfigure/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyGoodsManage/Goods-commen/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyGoodsManage/SkyGoods/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyGoodsManage/Goods-pojo/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyGoodsManage/Goods-service/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyGoodsManage/GoodsApp/pom.xml" />
+        <option value="$PROJECT_DIR$/Sky-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyGateway/Sky-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/commen-utils/aliyun-oss-spring-boot-autoconfigure/pom.xml" />
+        <option value="$PROJECT_DIR$/commen-utils/aliyun-oss-spring-boot-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/commen-utilsdemo/pom.xml" />
+        <option value="$PROJECT_DIR$/commen-utils/pom.xml" />
+        <option value="$PROJECT_DIR$/common-util/common-utils-spring-boot-autoconfigure/pom.xml" />
+        <option value="$PROJECT_DIR$/common-util/common-utils-spring-boot-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/common-utils/pom.xml" />
+        <option value="$PROJECT_DIR$/common-utils/common-utils-spring-boot-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/common-utils/common-utils-spring-boot-autoconfigure/pom.xml" />
+        <option value="$PROJECT_DIR$/common-utils/aliyun-oss-spring-boot-autoconfigure/pom.xml" />
+        <option value="$PROJECT_DIR$/common-utils/aliyun-oss-spring-boot-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/common-utils/pojo-public-spring-boot-autoconfigure/pom.xml" />
+        <option value="$PROJECT_DIR$/common-utils/common-utils-spring-boot-starter/pojo-public-spring-boot-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/common-utils/pojo-public-spring-boot-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyGateway/Sky-gateway/gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyGateway/gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/common-utils/micro-utils-spring-boot-autoconfigure/pom.xml" />
+        <option value="$PROJECT_DIR$/common-utils/micro-utils-spring-boot-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyOrders/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyOrders/sky-orders-APP/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyOrders/sky-orders-service/pom.xml" />
+        <option value="$PROJECT_DIR$/SkyOrders/sky-orders-pojo/pom.xml" />
+        <option value="$PROJECT_DIR$/sky-orders/pom.xml" />
+        <option value="$PROJECT_DIR$/sky-orders/sky-orders-APP/pom.xml" />
+        <option value="$PROJECT_DIR$/sky-orders/sky-orders-pojo/pom.xml" />
+        <option value="$PROJECT_DIR$/sky-orders/sky-orders-service/pom.xml" />
+        <option value="$PROJECT_DIR$/common-utils/microseuvice-security-spring-boot-autoconfigure/pom.xml" />
+        <option value="$PROJECT_DIR$/common-utils/microseuvice-security-spring-boot-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/common-utils/microservice-security-spring-boot-autoconfigure/pom.xml" />
+        <option value="$PROJECT_DIR$/common-utils/microservice-security-spring-boot-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/sky-orders/commen-module/pom.xml" />
+        <option value="$PROJECT_DIR$/system-cache/pom.xml" />
+        <option value="$PROJECT_DIR$/demo/pom.xml" />
+        <option value="$PROJECT_DIR$/system-cache/system-cache-use/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/SkyriseTecFrontierEnd/SKYSecurity/pom.xml" />
+        <option value="$PROJECT_DIR$/commen-utilsdemo/pom.xml" />
+        <option value="$PROJECT_DIR$/common-utils/micro-utils-spring-boot-autoconfigure/pom.xml" />
+        <option value="$PROJECT_DIR$/common-utils/micro-utils-spring-boot-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/demo/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="21" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

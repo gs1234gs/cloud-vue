@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tianchang.mapper.DeptMapper">
+
+
+    <sql id="deptSelectIdPublic">
+        dept_id,
+        parent_id,
+        ancestors,
+        dept_name,
+        order_num,
+        leader,
+        phone_number,
+        email,
+        status,
+        del_flag,
+        create_by,
+        create_time,
+        update_by,
+        update_time
+    </sql>
+<!--  添加部门  -->
+    <insert id="addDept">
+        INSERT INTO stf.sys_dept
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="parentId != null">parent_id,</if>
+            <if test="ancestors != null">ancestors,</if>
+            <if test="deptName != null">dept_name,</if>
+            <if test="orderNum != null">order_num,</if>
+            <if test="leader != null">leader,</if>
+            <if test="phoneNumber != null">phone_number,</if>
+            <if test="email != null">email,</if>
+            <if test="status != null">status,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="parentId != null">#{parentId},</if>
+            <if test="ancestors != null">#{ancestors},</if>
+            <if test="deptName != null">#{deptName},</if>
+            <if test="orderNum != null">#{orderNum},</if>
+            <if test="leader != null">#{leader},</if>
+            <if test="phoneNumber != null">#{phoneNumber},</if>
+            <if test="email != null">#{email},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+        </trim>
+    </insert>
+    <update id="updateDept">
+        UPDATE stf.sys_dept
+        <set>
+            <if test="parentId != null">
+                parent_id = #{parentId},
+            </if>
+            <if test="ancestors != null and ancestors!=''">
+                ancestors = #{ancestors},
+            </if>
+            <if test="deptName != null and deptName != ''">
+                dept_name = #{deptName},
+            </if>
+            <if test="orderNum != null">
+                order_num = #{orderNum},
+            </if>
+            <if test="leader != null and leader != ''">
+                leader = #{leader},
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                phone_number = #{phoneNumber},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createBy != null and createBy != ''">
+                create_by = #{createBy},
+            </if>
+            <if test="updateBy != null and updateBy != ''">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime}
+            </if>
+        </set>
+        WHERE dept_id = #{deptId}
+    </update>
+
+
+    <!-- 获取完整部门树数据 -->
+    <select id="getDeptTree" resultType="com.tianchang.pojo.Dept">
+        <!-- MySQL需解除递归深度限制 -->
+        <if test="_databaseId == 'mysql'">
+            SET SESSION cte_max_recursion_depth = 1000000;
+        </if>
+
+        WITH RECURSIVE dept_tree AS (
+        SELECT
+        dept_id,
+        parent_id,
+        dept_name,
+        order_num,
+        leader,
+        CAST(dept_name AS CHAR(1000)) AS hierarchy_path,
+        0 AS level,
+        phone_number,
+        email,
+        status,
+        del_flag,
+        create_by,
+        create_time,
+        update_by,
+        update_time
+        FROM stf.sys_dept
+        WHERE parent_id = 0 AND del_flag = 0
+
+        UNION ALL
+
+        SELECT
+        d.dept_id,
+        d.parent_id,
+        d.dept_name,
+        d.order_num,
+        d.leader,
+        CONCAT(t.hierarchy_path, ' > ', d.dept_name),
+        t.level + 1,
+        d.phone_number,
+        d.email,
+        d.status,
+        d.del_flag,
+        d.create_by,
+        d.create_time,
+        d.update_by,
+        d.update_time
+        FROM stf.sys_dept d
+        INNER JOIN dept_tree t ON d.parent_id = t.dept_id
+        WHERE d.del_flag = 0
+        )
+        SELECT
+        dept_id,
+        parent_id,
+        dept_name,
+        order_num,
+        leader,
+        phone_number,
+        email,
+        status,
+        del_flag,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        hierarchy_path AS ancestors,
+        level
+        FROM dept_tree
+        ORDER BY hierarchy_path
+    </select>
+
+<!--  获取部门总条数  -->
+    <select id="getDeptCount" resultType="java.lang.Integer">
+        select
+            count(*)
+        from
+            stf.sys_dept
+    </select>
+<!--    // 查询部门列表-->
+    <select id="queryDeptListByCondition" resultType="com.tianchang.pojo.Dept">
+        WITH RECURSIVE dept_tree AS (
+        -- 基础查询：获取满足条件的部门
+        SELECT
+        d.*,
+        0 AS is_child,
+        0 AS level -- 添加层级字段
+        FROM stf.sys_dept d
+        WHERE d.del_flag = 0
+        <if test="deptName != null and deptName != ''">
+            AND d.dept_name LIKE CONCAT('%', #{deptName}, '%')
+        </if>
+        <if test="leader != null and leader != ''">
+            AND d.leader LIKE CONCAT('%', #{leader}, '%')
+        </if>
+        <if test="startTime != null or endTime != null">
+            AND DATE(d.create_time) between #{startTime} AND #{endTime}
+        </if>
+
+        UNION ALL
+
+        -- 递归查询所有上级部门
+        SELECT
+        p.*,
+        1 AS is_child,
+        dt.level + 1 AS level
+        FROM stf.sys_dept p
+        JOIN dept_tree dt ON p.dept_id = dt.parent_id
+        WHERE p.del_flag = 0
+        )
+        -- 去重逻辑：通过 ROW_NUMBER 确保每个部门只出现一次
+        SELECT
+        t.*
+        FROM (
+        SELECT
+        dt.*,
+        ROW_NUMBER() OVER (PARTITION BY dt.dept_id ORDER BY dt.level ASC) AS rn
+        FROM dept_tree dt
+        ) t
+        WHERE t.rn = 1
+        ORDER BY t.ancestors, t.order_num;
+    </select>
+
+
+    <delete id="deleteDept" parameterType="int">
+        delete from stf.sys_dept
+               where
+                   <if test="deptId != null">
+                       dept_id = #{deptId}
+                   </if>
+    </delete>
+</mapper>

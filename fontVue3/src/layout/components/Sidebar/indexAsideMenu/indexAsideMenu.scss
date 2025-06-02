@@ -1,0 +1,114 @@
+.sidebar-container {
+  // position: fixed;
+  background: rgb(48, 65, 86);
+  border-right: 1px solid rgb(48, 65, 86);
+  transition: border-color 0.3s;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: linear-gradient(180deg, rgb(48, 65, 86) 0%,rgb(48, 65, 86));
+  color: #001529;
+  box-shadow: 2px 0 0 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  overflow: auto;
+  // width: 222px;
+}
+
+
+.app-menu {
+  background-color: #001529;
+
+  .el-menu {
+    border-right: none;
+    --el-menu-bg-color: #001529; /* 统一菜单背景色 */
+    --el-menu-hover-bg-color: rgba(255, 255, 255, 0.08); /* 统一悬停背景 */
+    --el-menu-active-color: #fff; /* 激活文字颜色 */
+    --el-menu-text-color: #b7bdc3; /* 常规文字颜色 */
+  }
+
+  /* 菜单项通用样式 */
+  .el-menu-item, .el-sub-menu__title {
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    height: 48px;
+    line-height: 48px;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1) !important;
+      color: #fff !important;
+
+      .el-icon {
+        color: #fff !important;
+      }
+    }
+
+    .el-icon {
+      color: #b7bdc3;
+      transition: color 0.3s;
+    }
+  }
+
+  /* 激活状态样式 */
+  .el-menu-item.is-active {
+    background: #1890ff !important;
+    color: #fff !important;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 60%;
+      width: 3px;
+      background: #fff;
+      border-radius: 2px;
+    }
+
+    .el-icon {
+      color: #fff !important;
+    }
+  }
+
+  /* 子菜单标题激活状态 */
+  .el-sub-menu.is-active > .el-sub-menu__title {
+    color: #fff !important;
+
+    .el-icon {
+      color: #fff !important;
+    }
+  }
+
+  /* 二级菜单样式 */
+  .el-menu--inline {
+    .el-menu-item {
+      height: 42px;
+      line-height: 42px;
+      min-width: auto !important;
+      background-color: #000c17 !important;
+
+      &:hover {
+        background: rgba(24, 144, 255, 0.15) !important;
+      }
+
+      &.is-active {
+        background: rgba(24, 144, 255, 0.2) !important;
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+/* 菜单展开/折叠过渡效果 */
+.el-menu--collapse {
+  .el-menu-item,
+  .el-sub-menu__title {
+    justify-content: center;
+  }
+
+  .el-icon {
+    margin-right: 0 !important;
+  }
+}

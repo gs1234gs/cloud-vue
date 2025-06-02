@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tianchang.mapper.MenusMapper">
+
+    <!-- 定义可重用的菜单字段SQL片段 -->
+    <sql id="usersMenus">
+        menu_id,           <!-- 菜单ID -->
+        menu_name,         <!-- 菜单名称 -->
+        parent_id,         <!-- 父菜单ID -->
+        order_num,         <!-- 显示顺序 -->
+        path,              <!-- 路由地址 -->
+        component,         <!-- 组件路径 -->
+        query,             <!-- 路由参数 -->
+        route_name,        <!-- 路由名称 -->
+        is_frame,          <!-- 是否外链(0是1否) -->
+        is_cache,          <!-- 是否缓存(0缓存1不缓存) -->
+        menu_type,         <!-- 菜单类型(M目录C菜单F按钮) -->
+        visible,           <!-- 是否显示(0显示1隐藏) -->
+        status,            <!-- 状态(0正常1停用) -->
+        perms,             <!-- 权限标识 -->
+        icon,              <!-- 菜单图标 -->
+        create_by,         <!-- 创建者 -->
+        create_time,       <!-- 创建时间 -->
+        update_by,         <!-- 更新者 -->
+        update_time,       <!-- 更新时间 -->
+        remark,            <!-- 备注 -->
+    </sql>
+    <!--  添加菜单  -->
+    <insert id="addMenu">
+        INSERT INTO stf.sys_menu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="menuName != null">menu_name,</if>
+            <if test="parentId != null">parent_id,</if>
+            <if test="orderNum != null">order_num,</if>
+            <if test="path != null">path,</if>
+            <if test="component != null">component,</if>
+            <if test="query != null">query,</if>
+            <if test="routeName != null">route_name,</if>
+            <if test="isFrame != null">is_frame,</if>
+            <if test="isCache != null">is_cache,</if>
+            <if test="menuType != null">menu_type,</if>
+            <if test="visible != null">visible,</if>
+            <if test="status != null">status,</if>
+            <if test="perms != null">perms,</if>
+            <if test="icon != null">icon,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="menuName != null">#{menuName},</if>
+            <if test="parentId != null">#{parentId},</if>
+            <if test="orderNum != null">#{orderNum},</if>
+            <if test="path != null">#{path},</if>
+            <if test="component != null">#{component},</if>
+            <if test="query != null">#{query},</if>
+            <if test="routeName != null">#{routeName},</if>
+            <if test="isFrame != null">#{isFrame},</if>
+            <if test="isCache != null">#{isCache},</if>
+            <if test="menuType != null">#{menuType},</if>
+            <if test="visible != null">#{visible},</if>
+            <if test="status != null">#{status},</if>
+            <if test="perms != null">#{perms},</if>
+            <if test="icon != null">#{icon},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
+    </insert>
+<!--  修改菜单  -->
+    <update id="updateMenu">
+        UPDATE stf.sys_menu
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="menuName != null">menu_name = #{menuName},</if>
+            <if test="parentId != null">parent_id = #{parentId},</if>
+            <if test="orderNum != null">order_num = #{orderNum},</if>
+            <if test="path != null">path = #{path},</if>
+            <if test="component != null">component = #{component},</if>
+            <if test="query != null">query = #{query},</if>
+            <if test="routeName != null">route_name = #{routeName},</if>
+            <if test="isFrame != null">is_frame = #{isFrame},</if>
+            <if test="isCache != null">is_cache = #{isCache},</if>
+            <if test="menuType != null">menu_type = #{menuType},</if>
+            <if test="visible != null">visible = #{visible},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="perms != null">perms = #{perms},</if>
+            <if test="icon != null">icon = #{icon},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        WHERE menu_id = #{menuId}
+    </update>
+<!--  删除菜单  -->
+<!--    <delete id="deleteMenu">-->
+<!--            delete -->
+<!--            FROM stf.sys_menu-->
+<!--            WHERE menu_id = #{menuId}-->
+<!--    </delete>-->
+<!--    <delete id="deleteMenuByParentId">-->
+<!--        delete -->
+<!--        FROM stf.sys_menu-->
+<!--        WHERE parent_id = #{parentId}-->
+<!--    </delete>-->
+
+
+    <!-- 根据用户ID查询菜单树 -->
+    <select id="selectMenuTreeByUserId" parameterType="Integer" resultType="com.tianchang.pojo.Menus">
+        -- 使用递归CTE(Common Table Expression)查询菜单层级结构
+        WITH RECURSIVE menu_tree AS (
+        -- 基础查询：获取用户直接拥有的菜单
+        SELECT
+        m.*,               -- 菜单所有字段
+        1 AS level         -- 初始层级设为1
+        FROM
+        stf.sys_menu m
+        JOIN
+        stf.sys_role_menu rm ON m.menu_id = rm.menu_id  -- 关联角色菜单表
+        JOIN
+        stf.sys_user_role ur ON rm.role_id = ur.role_id -- 关联用户角色表
+        WHERE
+        ur.user_id = #{userId}       -- 参数：用户ID
+        AND m.visible = 0            -- 只查询可见菜单
+        AND m.status = 0             -- 只查询正常状态菜单
+
+        UNION ALL  -- 联合所有结果
+
+        -- 递归查询：获取所有父级菜单
+        SELECT
+        p.*,                         -- 父菜单所有字段
+        mt.level + 1 AS level        -- 层级+1
+        FROM
+        stf.sys_menu p
+        JOIN
+        menu_tree mt ON  p.parent_id = mt.menu_id   -- 关联已查询出的菜单作为父菜单
+        WHERE
+        p.visible = 0                -- 只查询可见菜单
+        AND p.status = 0             -- 只查询正常状态菜单
+        )
+
+        -- 最终查询结果
+        SELECT
+        <include refid="usersMenus"/>    <!-- 包含所有菜单字段 -->
+        MIN(level) as level             <!-- 计算每个菜单的最小层级 -->
+        FROM
+        menu_tree                        <!-- 从CTE结果集查询 -->
+        GROUP BY                            <!-- 按以下字段分组去重 -->
+        menu_id, menu_name, parent_id, order_num, path, component,
+        query, route_name, is_frame, is_cache, menu_type, visible,
+        status, perms, icon, create_by, create_time, update_by,
+        update_time, remark
+        ORDER BY                            <!-- 结果排序 -->
+        MIN(level),      -- 1. 按最小层级排序(保证父菜单在前)
+        parent_id,       -- 2. 按父ID排序
+        order_num        -- 3. 按显示顺序排序
+    </select>
+
+    <!--  条件查询菜单  -->
+    <select id="queryMenuListByCondition" resultType="com.tianchang.pojo.Menus">
+            select
+                <include refid="usersMenus"/>
+                from stf.sys_menu
+            <where>
+                <if test="menuName != null and menuName != ''">
+                    and menu_name like concat('%', #{menuName}, '%')
+                </if>
+                <if test="startTime != null or endTime != null">
+                    and DATE(create_time) between #{startTime} AND #{endTime}
+                </if>
+            </where>
+    </select>
+
+
+</mapper>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SkyGoodsManage/GoodsApp/GoodsApp.iml" filepath="$PROJECT_DIR$/SkyGoodsManage/GoodsApp/GoodsApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SkyriseTecFrontierEnd.iml" filepath="$PROJECT_DIR$/.idea/SkyriseTecFrontierEnd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-util/aliyun-oss-spring-boot-autoconfigure/aliyun-oss-spring-boot-autoconfigure (1).iml" filepath="$PROJECT_DIR$/common-util/aliyun-oss-spring-boot-autoconfigure/aliyun-oss-spring-boot-autoconfigure (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-util/aliyun-oss-spring-boot-starter/aliyun-oss-spring-boot-starter (1).iml" filepath="$PROJECT_DIR$/common-util/aliyun-oss-spring-boot-starter/aliyun-oss-spring-boot-starter (1).iml" />
+    </modules>
+  </component>
+</project>

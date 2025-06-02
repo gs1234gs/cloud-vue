@@ -1,0 +1,46 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: Sky-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.56.128:8848
+    gateway:
+      routes:
+        - id: GoodsApp
+          uri: lb://GoodsApp
+          predicates:
+            - Path=/product/**
+
+        - id: TianChangAPP
+          uri: lb://TianChangAPP
+          predicates:
+            - Path=/login/**, /menu/**, /user/**, /role/**, /dept/**,/post/**
+
+        - id: sky-orders-APP
+          uri: lb://sky-orders-APP
+          predicates:
+              - Path=/orders/**
+#      default-filters:
+##        - AddResponseHeader=token, 12345
+#        - PrintAny
+#logging:
+#  level:
+#    org.springframework.cloud.gateway: DEBUG
+#    org.springframework.web.reactive: DEBUG
+#    org.springframework.cloud.client: DEBUG
+#    org.springframework.cloud.gateway.filter: DEBUG
+#user:
+#  info:
+#    interceptor:
+#      enabled: false
+logging:
+  level:
+    root: ERROR  # 将根日志级别设置为ERROR
+    org.springframework: ERROR  # 将Spring框架的日志级别设置为ERROR
+    com.tianchang: ERROR  # 将你的应用包路径下的日志级别设置为ERROR

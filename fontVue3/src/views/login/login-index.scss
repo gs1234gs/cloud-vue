@@ -1,0 +1,139 @@
+$dark_gray: #889aa4;
+.login-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // background-image: url('@/assets/images/login/logoA.jpg');
+  background-position: bottom center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  z-index: 1;
+  opacity: 0.65;
+  .login-left {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    img {
+      width: 100%;
+      max-width: 500px;
+    }
+  }
+  .login-form {
+    max-width: 480px;
+    width: 28%;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+    box-sizing: border-box;
+    position: relative;
+  }
+  .login-title {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0px;
+    height: 570px;
+    left: 65%;
+    top: 0;
+    .title {
+      margin: 0;
+      font-size: 30px;
+      white-space: nowrap;
+    }
+    .icon {
+      width: 60px;
+      border-radius: 50%;
+    }
+
+  }
+  ::v-deep(.el-input__inner) {
+    height: 40px;
+  }
+}
+.login-btn {
+  margin-top: 50px;
+  width: 100%;
+  height: 47px;
+}
+
+.forget-btn {
+
+  width: 20%;
+  height: 10px;
+  position: absolute; // 设置为绝对定位
+  right: 10%; // 放在最右边
+  bottom: 0px; // 使用负值，将按钮推到父容器之外
+  // margin-bottom: 20px; // 进一步增加距离
+}
+
+.remember-pwd {
+  top: 40%;
+ left: 10%;
+ bottom: 40%;
+}
+
+.show-pwd {
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  font-size: 16px;
+  color: $dark_gray;
+  cursor: pointer;
+  -webkit-user-select: none; // 兼容 Safari 和 iOS Safari
+  user-select: none;
+  ::v-deep(.svg-icon) {
+    vertical-align: 0;
+  }
+}
+.login-container {
+  background-color: #f0f2f5;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+.login-dark {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+@media (max-width: 850px) {
+  .login-container {
+    padding: 10px;
+  }
+  .login-box {
+
+    .login-form {
+      width: 88%;
+      .title {
+        font-size: 20px;
+      }
+    }
+  }
+  .login-left {
+    display: none;
+  }
+
+
+}
+.tabs{
+  position: absolute; // 使用绝对定位将 tabs 固定在顶部
+  top: 0px; // 距离顶部的间距
+  width: 100%;
+  z-index: 10; // 确保 tabs 在其他内容之上
+  display: flex;
+  justify-content: center; // 水平居中对齐 tabs
+  background: transparent;// 确保 tabs 背景透明
+  left: 0;
+}
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tianchang.mapper.ProductMapper">
+
+    <sql id="selectAll">
+        product_id, product_name, product_price, product_cost, product_stock, status, image, create_time, update_time, description, brand_country
+    </sql>
+
+
+    <select id="queryProductList" resultType="com.tianchang.pojo.Product">
+        select
+            <include refid="selectAll" />
+            from stg.product
+    </select>
+</mapper>

@@ -1,0 +1,7 @@
+com.tianchang.TianchangAutoConfiguration
+com.tianchang.WebMvcConfigAutoConfiguration
+com.tianchang.internetConfig.RegisterRestTemplate
+com.tianchang.constant.ConstClassNickName
+com.tianchang.constant.ConstMapClassNickName
+com.tianchang.constant.ConstThreadLocal
+com.tianchang.constant.PublicConstList

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tianchang.mapper.OrderMapper">
+<sql id="selectAllOrders">
+    orders_id, product_id, product_count, actual_cost, orders_number, cost_method, invoice_type, cost_time, place_order_time, delivery_method, customer_id, receipt_address, delivery_time, receipt_method
+</sql>
+<!--    <select id="orderCount" resultType="java.lang.Integer">-->
+<!--        select product_count-->
+<!--        from sky_order.orders-->
+<!--        where product_id = #{productId}-->
+<!--    </select>-->
+    <select id="orderList" resultType="com.tianchang.pojo.Orders">
+        select
+            <include refid="selectAllOrders" />
+            from sky_order.orders
+
+    </select>
+</mapper>

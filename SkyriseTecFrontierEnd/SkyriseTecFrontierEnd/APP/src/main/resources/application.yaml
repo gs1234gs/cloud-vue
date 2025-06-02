@@ -1,0 +1,118 @@
+spring:
+  application:
+    name: TianChangAPP  # 应用程序的名称，用于标识该 Spring Boot 应用。
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.56.128:8848
+    openfeign:
+      okhttp:
+        enabled: true
+  main:
+    allow-bean-definition-overriding: true
+  security:
+    user:
+      name: admin
+      password: 123456
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/stf?useSSL=false&serverTimezone=UTC  # 数据库连接 URL，连接到本地的 MySQL 数据库 'dt'。
+    username: root  # 数据库用户名。
+    password: 1234  # 数据库密码。
+    driver-class-name: com.mysql.cj.jdbc.Driver  # JDBC 驱动类名，用于连接 MySQL 数据库。
+    hikari:
+      maximum-pool-size: 100  # 增加最大连接数（根据数据库能力调整）
+      minimum-idle: 20      # 最小空闲连接数
+      idle-timeout: 30000   # 空闲连接超时时间（毫秒）
+      max-lifetime: 1800000 # 连接最大生命周期（毫秒）
+      connection-timeout: 5000  # 获取连接超时时间（毫秒）
+  #文件上传
+  servlet:
+    multipart:
+      max-file-size: 100MB # 文件最大上传大小，单位为字节，设置为 100MB。
+      max-request-size: 1000MB # 请求的最大上传大小，单位为字节，设置为 1000MB。
+
+  #redis数据持久化配置
+  jpa:
+    hibernate:
+      ddl-auto: update  # Hibernate 的 DDL 自动执行策略，可选值包括 'create'（每次启动时重新创建数据库结构）、'update'（更新数据库结构）、'validate'（验证数据库结构）、'none'（不自动执行任何操作）。
+    show-sql: true      # 是否显示 SQL 语句，设置为 true 可以在控制台中查看生成的 SQL。
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect  # Hibernate 方言，指定使用的数据库类型，这里是 MySQL。
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+  data :
+    redis:
+      host: 127.0.0.1
+      port: 6379
+#      password: yourpassword
+      database: 0
+      timeout: 5000ms
+      lettuce:
+        pool:
+          max-active: 200    # 最大活跃连接数
+          max-idle: 50       # 最大空闲连接数
+          min-idle: 20       # 最小空闲连接数
+          max-wait: 5000ms    # 获取连接的最大等待时间（-1 表示无限制）
+  jackson:
+    date-format: yyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false
+
+
+
+#server:
+#  port: 9999  # 服务器端口，Spring Boot 应用将在这个端口上运行。
+#  tomcat:
+#    threads:
+#      max: 500 # 设置Tomcat的最大线程数
+#      min-spare: 50  # 设置Tomcat的最小空闲线程数
+#    accept-count: 100  # 设置等待队列的长度
+#    connection-timeout: 5000  # 设置连接超时时间（毫秒）
+server:
+  port: 9999
+  undertow:
+    threads:
+      worker: 40  # 工作线程数（建议为CPU线程数的1.5-2倍）
+      io: 14      # I/O线程数（等于CPU核心数）
+    buffer-size: 65536  # 增大缓冲区大小（64KB）
+    direct-buffers: true  # 使用直接缓冲区
+    accesslog:
+      enabled: false  # 关闭访问日志（减少I/O开销）
+    max-http-post-size: 100MB  # POST请求最大大小
+
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true  # 启用驼峰命名转换
+    default-fetch-size: 100  # 默认查询结果集大小
+    default-statement-timeout: 30  # 默认SQL超时时间（秒）
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # MyBatis 日志实现，配置为将日志输出到标准输出（控制台）。
+#  mapper-locations: SkyriseTechFronter-user/src/main/java/classpath:resources/com/tianchang/mapper/*.xml  # MyBatis 映射文件的位置，指定 XML 映射文件的路径。
+
+#aliyun-oss
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    bucketName: web-eg-example01
+    accessKeyId: LTAI5tNC3nPEEfGJ2P56wTvG
+    accessKeySecret: 5VeOsZIVmOSGPsBVWvIcyhE4y4MUbE
+
+#事物管理配置
+#logging:
+#  level:
+#    org.springframework.jdbc.support.JdbcTransactionManager: debug
+#    org.springframework.cloud.openfeign: debug
+logging:
+  level:
+    root: ERROR  # 将根日志级别设置为ERROR
+    org.springframework: ERROR  # 将Spring框架的日志级别设置为ERROR
+    com.tianchang: ERROR  # 将你的应用包路径下的日志级别设置为ERROR
+
+
+
+

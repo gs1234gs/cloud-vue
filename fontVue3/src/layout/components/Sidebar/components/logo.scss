@@ -1,0 +1,46 @@
+ /* 定义过渡动画：进入时的过渡效果 */
+ .sidebarLogoFadeCl-enter-active {
+  transition: opacity 2s; /* 过渡动画持续时间为 2 秒 */
+}
+/* 定义过渡动画：进入时的初始状态 */
+.sidebarLogoFadeCl-enter-from,
+/* 定义过渡动画：离开时的最终状态 */
+.sidebarLogoFadeCl-leave-to {
+  opacity: 0; /* 初始和结束状态透明度为 0 */
+}
+
+/* 侧边栏 Logo 容器样式 */
+.sidebar-logo-container {
+  position: relative; /* 设置容器为相对定位 */
+  width: 100%; /* 容器宽度占满父级 */
+  height: 50px; /* 容器高度为 50px */
+  line-height: 50px; /* 行高等于高度，方便垂直居中 */
+  background: #2b2f3a; /* 背景色设置为深灰蓝色 */
+  text-align: center; /* 内容水平居中 */
+  overflow: hidden; /* 超出部分隐藏 */
+
+  /* 子元素：Logo 链接样式 */
+  & .sidebar-logo-link {
+    height: 100%; /* 链接高度占满父级 */
+    width: 100%; /* 链接宽度占满父级 */
+
+    /* 子元素：Logo 图片样式 */
+    & .sidebar-logo {
+      width: 32px; /* 图片宽度为 32px */
+      height: 32px; /* 图片高度为 32px */
+      border-radius: 50%; /* 图片设置为圆形 */
+      vertical-align: middle; /* 图片与文本基线对齐 */
+    }
+    /* 子元素：标题样式 */
+    & .sidebar-title {
+      display: inline-block; /* 设置为行内块级元素 */
+      margin: 0; /* 清除默认外边距 */
+      color: #fff; /* 标题颜色为白色 */
+      font-weight: 600; /* 标题字体加粗 */
+      margin-left: 12px; /* 标题与图片间距为 12px */
+      line-height: 50px; /* 行高等于容器高度，方便垂直居中 */
+      font-size: 14px; /* 标题字体大小为 14px */
+      vertical-align: middle; /* 标题与图片基线对齐 */
+    }
+  }
+}
